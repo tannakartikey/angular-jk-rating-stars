@@ -1,0 +1,12 @@
+<div
+  class="jk-rating-stars-container"
+  layout="row" >
+  <a
+    class="star-button"
+    ng-mouseover="ctrl.setMouseOverRating($index + 1)"
+    ng-mouseleave="ctrl.setRating(ctrl.value)"
+    ng-click="ctrl.setRating($index + 1)"
+    ng-repeat="item in ctrl.starsArray" >
+    <i class="material-icons">{{item.class}}</i>
+  </a>
+</div>
