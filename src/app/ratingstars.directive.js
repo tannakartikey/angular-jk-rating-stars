@@ -12,8 +12,9 @@
       controller: 'RatingStarsController',
       controllerAs: 'ctrl',
       bindToController: {
-        stars: '@?',
-        value: '=?'
+        maxRating: '@?',
+        rating: '=?',
+        readOnly: '=?'
       }
     };
   }
