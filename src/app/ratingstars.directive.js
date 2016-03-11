@@ -14,7 +14,8 @@
       bindToController: {
         maxRating: '@?',
         rating: '=?',
-        readOnly: '=?'
+        readOnly: '=?',
+        onRating: '&'
       }
     };
   }

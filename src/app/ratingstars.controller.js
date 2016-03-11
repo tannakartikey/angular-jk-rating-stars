@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function RatingStarsController($attrs) {
+  function RatingStarsController($attrs, $timeout) {
 
     var that = this;
     if (that.maxRating === undefined) {
@@ -45,6 +45,11 @@
       }
       that.rating = rating;
       that.validateStars(that.rating);
+      $timeout(function() {
+        that.onRating({
+          rating: that.rating
+        });
+      });
     };
 
     that.setMouseOverRating = function(rating) {
@@ -73,7 +78,7 @@
   angular
     .module('jkAngularRatingStars')
     .controller('RatingStarsController', [
-      '$attrs',
+      '$attrs', '$timeout',
       RatingStarsController
     ]);
 

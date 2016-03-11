@@ -9,7 +9,7 @@
 (function() {
   'use strict';
 
-  function RatingStarsController($attrs) {
+  function RatingStarsController($attrs, $timeout) {
 
     var that = this;
     if (that.maxRating === undefined) {
@@ -53,6 +53,11 @@
       }
       that.rating = rating;
       that.validateStars(that.rating);
+      $timeout(function() {
+        that.onRating({
+          rating: that.rating
+        });
+      });
     };
 
     that.setMouseOverRating = function(rating) {
@@ -81,7 +86,7 @@
   angular
     .module('jkAngularRatingStars')
     .controller('RatingStarsController', [
-      '$attrs',
+      '$attrs', '$timeout',
       RatingStarsController
     ]);
 
@@ -103,7 +108,8 @@
       bindToController: {
         maxRating: '@?',
         rating: '=?',
-        readOnly: '=?'
+        readOnly: '=?',
+        onRating: '&'
       }
     };
   }
@@ -116,4 +122,4 @@
 
 }());
 
-(function(){angular.module("jkAngularRatingStars.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("rating-stars-directive.html","<div\n  class=\"jk-rating-stars-container\"\n  layout=\"row\" >\n\n  <a\n    class=\"star-button\"\n    ng-click=\"ctrl.setRating(0)\"\n    ng-if=\"!ctrl.readOnly\" >\n    <i class=\"material-icons\">remove_circle_outline</i>\n  </a>\n\n  <a\n    class=\"star-button\"\n    ng-mouseover=\"ctrl.setMouseOverRating($index + 1)\"\n    ng-mouseleave=\"ctrl.setRating(ctrl.rating)\"\n    ng-click=\"ctrl.setRating($index + 1)\"\n    ng-repeat=\"item in ctrl.starsArray\" >\n    <i class=\"material-icons\">{{item.class}}</i>\n  </a>\n\n</div>\n");}]);})();
+(function(){angular.module("jkAngularRatingStars.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("rating-stars-directive.html","<div\n  class=\"jk-rating-stars-container\"\n  layout=\"row\" >\n\n  <a\n    class=\"star-button\"\n    ng-click=\"ctrl.setRating(0)\"\n    ng-if=\"!ctrl.readOnly\" >\n    <i class=\"material-icons\">remove_circle_outline</i>\n  </a>\n\n  <a\n    class=\"star-button\"\n    ng-mouseover=\"ctrl.setMouseOverRating($index + 1)\"\n    ng-mouseleave=\"ctrl.setMouseOverRating(ctrl.rating)\"\n    ng-click=\"ctrl.setRating($index + 1)\"\n    ng-repeat=\"item in ctrl.starsArray\" >\n    <i class=\"material-icons\">{{item.class}}</i>\n  </a>\n\n</div>\n");}]);})();
