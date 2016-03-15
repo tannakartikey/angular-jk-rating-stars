@@ -1,6 +1,6 @@
 {
   "name": "angular-jk-rating-stars",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Amazing rating stars directive for angular material",
 	"repository": {
 		"type": "git",

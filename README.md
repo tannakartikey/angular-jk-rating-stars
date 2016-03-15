@@ -33,14 +33,11 @@ angular.module('MyApp', ['jkAngularRatingStars']);
 
  - Add a `jk-rating-stars` tag to your html, set the amount of stars and bind a variable that will holds the selected value. If the maxRating variable is not set, we use the default of 5.
 ```html
-<jk-rating-stars max-rating="8" rating="ctrl.rating" read-only="ctrl.readOnly" >
+<jk-rating-stars max-rating="8" rating="ctrl.rating" read-only="ctrl.readOnly" on-rating="ctrl.onRating(rating)" >
 </jk-rating-stars>
 ```
 
 ## TODO :
-
- - Add callbacks for directive actions
- - Option to change the styling of the component
 
 ## License
 This module is released under the permissive [MIT license](http://revolunet.mit-license.org). Contributions or suggestions are always welcome :D

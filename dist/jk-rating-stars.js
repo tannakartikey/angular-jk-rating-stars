@@ -38,7 +38,7 @@
       for (var index = 0; index < that.maxRating; index++) {
         var starItem = {
           index: index,
-          class: 'star_border'
+          class: 'star-off'
         };
         starsArray.push(starItem);
       }
@@ -74,9 +74,9 @@
       for (var index = 0; index < that.starsArray.length; index++) {
         var starItem = that.starsArray[index];
         if (index <= (rating - 1)) {
-          starItem.class = 'star';
+          starItem.class = 'star-on';
         } else {
-          starItem.class = 'star_border';
+          starItem.class = 'star-off';
         }
       }
     };
@@ -122,4 +122,4 @@
 
 }());
 
-(function(){angular.module("jkAngularRatingStars.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("rating-stars-directive.html","<div\n  class=\"jk-rating-stars-container\"\n  layout=\"row\" >\n\n  <a\n    class=\"star-button\"\n    ng-click=\"ctrl.setRating(0)\"\n    ng-if=\"!ctrl.readOnly\" >\n    <i class=\"material-icons\">remove_circle_outline</i>\n  </a>\n\n  <a\n    class=\"star-button\"\n    ng-mouseover=\"ctrl.setMouseOverRating($index + 1)\"\n    ng-mouseleave=\"ctrl.setMouseOverRating(ctrl.rating)\"\n    ng-click=\"ctrl.setRating($index + 1)\"\n    ng-repeat=\"item in ctrl.starsArray\" >\n    <i class=\"material-icons\">{{item.class}}</i>\n  </a>\n\n</div>\n");}]);})();
+(function(){angular.module("jkAngularRatingStars.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("rating-stars-directive.html","<div\n  class=\"jk-rating-stars-container\"\n  layout=\"row\" >\n\n  <a\n    class=\"button\"\n    ng-click=\"ctrl.setRating(0)\"\n    ng-if=\"!ctrl.readOnly\" >\n    <i class=\"material-icons\">remove_circle_outline</i>\n  </a>\n\n  <a\n    class=\"button star-button\"\n    ng-class=\"item.class\"\n    ng-mouseover=\"ctrl.setMouseOverRating($index + 1)\"\n    ng-mouseleave=\"ctrl.setMouseOverRating(ctrl.rating)\"\n    ng-click=\"ctrl.setRating($index + 1)\"\n    ng-repeat=\"item in ctrl.starsArray\" >\n    <i class=\"material-icons\">star</i>\n  </a>\n\n</div>\n");}]);})();

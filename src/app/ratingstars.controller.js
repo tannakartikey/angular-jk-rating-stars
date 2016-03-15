@@ -30,7 +30,7 @@
       for (var index = 0; index < that.maxRating; index++) {
         var starItem = {
           index: index,
-          class: 'star_border'
+          class: 'star-off'
         };
         starsArray.push(starItem);
       }
@@ -66,9 +66,9 @@
       for (var index = 0; index < that.starsArray.length; index++) {
         var starItem = that.starsArray[index];
         if (index <= (rating - 1)) {
-          starItem.class = 'star';
+          starItem.class = 'star-on';
         } else {
-          starItem.class = 'star_border';
+          starItem.class = 'star-off';
         }
       }
     };
