@@ -12,26 +12,15 @@
   function RatingStarsController($attrs, $timeout) {
 
     var that = this;
-    if (that.maxRating === undefined) {
-      that.maxRating = 5;
-    }
+
     if (that.readOnly === undefined) {
       that.readOnly = false;
     }
 
-    $attrs.$observe('maxRating', function() {
-      that.maxRating = parseInt(that.maxRating);
+    that.initStarsArray = function() {
       that.starsArray = that.getStarsArray();
-      that.validateStars(that.rating);
-    });
-
-    $attrs.$observe('rating', function() {
-      that.rating = parseInt(that.rating);
-      if (that.rating > that.maxRating) {
-        that.rating = that.maxRating;
-      }
-      that.validateStars(that.rating);
-    });
+      that.validateStars();
+    };
 
     that.getStarsArray = function() {
       var starsArray = [];
@@ -44,8 +33,6 @@
       }
       return starsArray;
     };
-
-    that.starsArray = that.getStarsArray();
 
     that.setRating = function(rating) {
       if (that.readOnly) {
@@ -98,6 +85,18 @@
 
   function RatingStarsDirective() {
 
+    function link(scope, element, attrs, ctrl) {
+      if (!attrs.maxRating || (parseInt(attrs.maxRating) <= 0)) {
+        attrs.maxRating = '5';
+      }
+      scope.$watch('ctrl.maxRating', function(oldVal, newVal) {
+        ctrl.initStarsArray();
+      });
+      scope.$watch('ctrl.rating', function(oldVal, newVal) {
+        ctrl.validateStars(ctrl.rating);
+      });
+    }
+
     return {
       restrict: 'E',
       replace: true,
@@ -110,7 +109,8 @@
         rating: '=?',
         readOnly: '=?',
         onRating: '&'
-      }
+      },
+      link: link
     };
   }
 
