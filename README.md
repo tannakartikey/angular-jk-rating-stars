@@ -9,6 +9,9 @@ Demo : https://embed.plnkr.co/q7pgHz/
 ### npm
 `npm install angular-jk-rating-stars`
 
+### bower
+`bower install angular-jk-rating-stars`
+
 ## Usage :
 
  - Add `jk-rating-stars.js` to your index file:
